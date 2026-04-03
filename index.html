@@ -991,7 +991,7 @@ footer {
       <div class="logo-mark" style="width:24px;height:24px;background:var(--gold);clip-path:polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);"></div>
       Sanyu Enterprises
     </div>
-    <p class="footer-copy"><a href="https://srijith.vercel.app/" target="_blank" rel="noopener" style="color: var(--gold-dim); text-decoration: none; font-size: 0.7rem; letter-spacing: 0.18em; text-transform: uppercase; transition: color 0.2s;" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--gold-dim)'">Design by SRIJITH</a></p>
+ <p class="footer-copy"><a href="https://srijith.vercel.app/" target="_blank" rel="noopener" style="color: var(--gold-dim); text-decoration: none; font-size: 0.7rem; letter-spacing: 0.18em; text-transform: uppercase; transition: color 0.2s;" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--gold-dim)'">Design by SRIJITH</a></p>
     <div class="footer-note">WhatsApp ordering available</div>
   </footer>
 </div>
@@ -1028,8 +1028,8 @@ footer {
       </div>
       <div class="form-row">
         <div class="field">
-          <label>Price (UGX) *</label>
-          <input type="number" id="add-price" placeholder="e.g. 25000" min="0">
+          <label>Price (INR) *</label>
+          <input type="number" id="add-price" placeholder="e.g. 999" min="0">
         </div>
         <div class="field">
           <label>Category</label>
@@ -1098,7 +1098,7 @@ footer {
     </div>
     <div class="form-row">
       <div class="field">
-        <label>Price (UGX) *</label>
+        <label>Price (INR) *</label>
         <input type="number" id="edit-price" min="0">
       </div>
       <div class="field">
@@ -1130,9 +1130,10 @@ footer {
 
 <script>
 // ─── CONFIG (obfuscated) ───
-const _a = atob('YWRtaW4=');           
-const _b = atob('c2FueXUyMDI0');       
-const WHATSAPP_NUMBER = '7947431586';
+const _a = atob('YWRtaW4=');           // admin
+const _b = atob('c2FueXUyMDI0');       // sanyu2024
+const WHATSAPP_NUMBER = '917947431586';
+
 
 // ─── LOGO TRIPLE-TAP ───
 let _tapCount = 0;
@@ -1246,7 +1247,7 @@ function addProduct() {
     id: Date.now().toString(),
     name, price, category: cat || 'General', description: desc,
     image: addImgData || null,
-    createdAt: new Date().toLocaleDateString('en-UG')
+    createdAt: new Date().toLocaleDateString('en-IN')
   });
   saveProducts();
   ['add-name','add-price','add-cat','add-desc','add-img'].forEach(id => document.getElementById(id).value = '');
@@ -1301,7 +1302,7 @@ function renderPublic() {
         ${p.description ? `<div class="product-desc">${esc(p.description)}</div>` : ''}
         <div class="product-footer">
           <div class="product-price">
-            <span class="product-price-currency">UGX</span>
+            <span class="product-price-currency">INR</span>
             ${fmtPrice(p.price)}
           </div>
           <button class="order-btn" onclick="orderWhatsApp('${p.id}')">
@@ -1321,7 +1322,7 @@ function orderWhatsApp(id) {
   const msg = encodeURIComponent(
     `Hello Sanyu Enterprises! 👋\n\nI'd like to order:\n\n` +
     `📦 *${p.name}*\n` +
-    `💰 Price: UGX ${fmtPrice(p.price)}\n` +
+    `💰 Price: INR ${fmtPrice(p.price)}\n` +
     `${p.category ? `🏷️ Category: ${p.category}\n` : ''}` +
     `\nPlease let me know about availability and delivery. Thank you!`
   );
@@ -1372,7 +1373,7 @@ function renderAdmin() {
             </td>
             <td><span class="table-cat">${esc(p.category)}</span></td>
             <td>
-              <span class="table-price-currency">UGX</span>
+              <span class="table-price-currency">INR</span>
               <span class="table-price">${fmtPrice(p.price)}</span>
             </td>
             <td class="table-date">${p.createdAt}</td>
@@ -1446,7 +1447,7 @@ function confirmDelete() {
 function closeDeleteModal() { document.getElementById('delete-modal').classList.remove('open'); }
 
 // ─── UTILS ───
-function fmtPrice(n) { return Number(n).toLocaleString('en-UG'); }
+function fmtPrice(n) { return Number(n).toLocaleString('en-IN'); }
 function esc(s) {
   return String(s)
     .replace(/&/g,'&amp;').replace(/</g,'&lt;')
